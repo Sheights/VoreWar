@@ -968,6 +968,7 @@ public class PredatorComponent
     private int DigestOneUnit(Prey preyUnit, int preyDamage)
     {
         int totalHeal = 0;
+	string temp;
         bool freshKill = false;
 
         if (preyUnit.Unit.IsThisCloseToDeath(preyDamage))
@@ -1037,7 +1038,11 @@ public class PredatorComponent
                 preyUnit.Unit.Health = preyUnit.Unit.MaxHealth / 2;
                 HashSet<Gender> set = new HashSet<Gender>(Races.GetRace(preyUnit.Unit.Race).CanBeGender);
                 bool equals = set.SetEquals(Races.GetRace(unit.Race).CanBeGender);
+		
+		temp = preyUnit.Unit.GetName();
                 preyUnit.Unit.ChangeRace(unit.Race);
+		preyUnit.Unit.SetName(temp);
+		
                 preyUnit.Unit.SetGear(unit.Race);
                 if (equals == false || Config.AlwaysRandomizeConverted)
                     preyUnit.Unit.TotalRandomizeAppearance();
@@ -1191,7 +1196,11 @@ public class PredatorComponent
                     {
                         HashSet<Gender> set = new HashSet<Gender>(Races.GetRace(preyUnit.Unit.Race).CanBeGender);
                         bool equals = set.SetEquals(Races.GetRace(unit.Race).CanBeGender);
-                        preyUnit.Unit.ChangeRace(unit.Race);
+
+			temp = preyUnit.Unit.GetName();
+                	preyUnit.Unit.ChangeRace(unit.Race);
+			preyUnit.Unit.SetName(temp);
+
                         preyUnit.Unit.SetGear(unit.Race);
                         if (equals == false || Config.AlwaysRandomizeConverted)
                             preyUnit.Unit.TotalRandomizeAppearance();

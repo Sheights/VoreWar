@@ -754,6 +754,16 @@ public class Unit
         InitializeTraits();
     }
 
+    internal string GetName()
+    {
+	return Name;
+    }
+
+    internal void SetName(string input)
+    {
+	Name = input;
+    }
+
     internal void TotalRandomizeAppearance()
     {
         var raceData = Races.GetRace(this);
